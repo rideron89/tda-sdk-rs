@@ -19,7 +19,7 @@ After creating a `Client`, you will need to give it an
 access token. You can either use an existing one from your database or
 filesystem, or fetch a new one from the API.
 
-```no_run
+```rust
 # use tda_sdk::Client;
 let mut client = Client::new("CLIENT_ID", "REFRESH_TOKEN", None);
 
@@ -31,7 +31,7 @@ client.set_access_token(&Some(access_token.into()));
 
 ### Create a Client and Use an Old Token
 
-```no_run
+```rust
 use tda_sdk::{AccessToken, Client};
 
 let access_token = AccessToken {
@@ -48,7 +48,7 @@ let client = Client::new("CLIENT_ID", "REFRESH_TOKEN", Some(access_token));
 After a token has been set, you may call any of the API methods. You can
 view all request parameters in the params module.
 
-```no_run
+```rust
 use tda_sdk::{
     Client,
     params::GetAccountsParams,
@@ -81,7 +81,7 @@ method for detecting its expiration status.
 **Note**: The `get_access_token()` response has a different structure than
 the token expected by the client. You will need to parse the response.
 
-```no_run
+```rust
 # use tda_sdk::{AccessToken, Client};
 # let client = Client::new("CLIENT_ID", "REFRESH_TOKEN", None);
 let access_token: AccessToken = client.get_access_token().unwrap().into();
