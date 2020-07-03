@@ -1,0 +1,7 @@
+/.vscode
+/target
+
+.test.env
+.token.json
+
+Cargo.lock
