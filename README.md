@@ -20,7 +20,8 @@ access token. You can either use an existing one from your database or
 filesystem, or fetch a new one from the API.
 
 ```rust
-# use tda_sdk::Client;
+use tda_sdk::Client;
+
 let mut client = Client::new("CLIENT_ID", "REFRESH_TOKEN", None);
 
 let access_token = client.get_access_token().unwrap();
@@ -82,8 +83,9 @@ method for detecting its expiration status.
 the token expected by the client. You will need to parse the response.
 
 ```rust
-# use tda_sdk::{AccessToken, Client};
-# let client = Client::new("CLIENT_ID", "REFRESH_TOKEN", None);
+use tda_sdk::{AccessToken, Client};
+
+let client = Client::new("CLIENT_ID", "REFRESH_TOKEN", None);
 let access_token: AccessToken = client.get_access_token().unwrap().into();
 
 if access_token.has_expired() {
