@@ -106,7 +106,7 @@ use thiserror::Error;
 use std::io;
 
 /// Base path for the TDA API.
-pub const TDA_API_BASE: &'static str = "https://api.tdameritrade.com/v1";
+pub const TDA_API_BASE: &str = "https://api.tdameritrade.com/v1";
 
 /// Client for interacting with the TDA API.
 ///
@@ -146,13 +146,13 @@ impl<'a> Client {
                 ("client_id", &self.client_id),
            ]);
         let status = response.status();
-        let body = response.into_string().map_err(|error| ClientError::ReadResponse(error))?;
+        let body = response.into_string().map_err(ClientError::ReadResponse)?;
 
         if status != 200 {
             return Err(ClientError::NotHttpOk(status, body))
         }
 
-        serde_json::from_str(&body).map_err(|error| ClientError::ParseResponse(error))
+        serde_json::from_str(&body).map_err(ClientError::ParseResponse)
     }
 
     /// Account balances, positions, and orders for a specific account.
@@ -175,13 +175,13 @@ impl<'a> Client {
 
         let response = request.call();
         let status = response.status();
-        let body = response.into_string().map_err(|error| ClientError::ReadResponse(error))?;
+        let body = response.into_string().map_err(ClientError::ReadResponse)?;
 
         if status != 200 {
             return Err(ClientError::NotHttpOk(status, body));
         }
 
-        serde_json::from_str(&body).map_err(|error| ClientError::ParseResponse(error))
+        serde_json::from_str(&body).map_err(ClientError::ParseResponse)
     }
 
     /// Account balances, positions, and orders for all linked accounts.
@@ -204,13 +204,13 @@ impl<'a> Client {
 
         let response = request.call();
         let status = response.status();
-        let body = response.into_string().map_err(|error| ClientError::ReadResponse(error))?;
+        let body = response.into_string().map_err(ClientError::ReadResponse)?;
 
         if status != 200 {
             return Err(ClientError::NotHttpOk(status, body));
         }
 
-        serde_json::from_str(&body).map_err(|error| ClientError::ParseResponse(error))
+        serde_json::from_str(&body).map_err(ClientError::ParseResponse)
     }
 
     /// Top 10 (up or down) movers by value or percent for a particular market
@@ -237,13 +237,13 @@ impl<'a> Client {
 
         let response = request.call();
         let status = response.status();
-        let body = response.into_string().map_err(|error| ClientError::ReadResponse(error))?;
+        let body = response.into_string().map_err(ClientError::ReadResponse)?;
 
         if status != 200 {
             return Err(ClientError::NotHttpOk(status, body));
         }
 
-        serde_json::from_str(&body).map_err(|error| ClientError::ParseResponse(error))
+        serde_json::from_str(&body).map_err(ClientError::ParseResponse)
     }
 
     /// Get price history for a symbol
@@ -290,13 +290,13 @@ impl<'a> Client {
 
         let response = request.call();
         let status = response.status();
-        let body = response.into_string().map_err(|error| ClientError::ReadResponse(error))?;
+        let body = response.into_string().map_err(ClientError::ReadResponse)?;
 
         if status != 200 {
             return Err(ClientError::NotHttpOk(status, body));
         }
 
-        serde_json::from_str(&body).map_err(|error| ClientError::ParseResponse(error))
+        serde_json::from_str(&body).map_err(ClientError::ParseResponse)
     }
 }
 
@@ -316,7 +316,7 @@ impl From<responses::AccessTokenResponse> for AccessToken {
         Self {
             token: response.access_token,
             expires_at: now + response.expires_in,
-            scope: response.scope.split(" ").map(|v| v.to_string()).collect(),
+            scope: response.scope.split(' ').map(|v| v.to_string()).collect(),
         }
     }
 }
