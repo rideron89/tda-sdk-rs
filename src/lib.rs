@@ -261,7 +261,7 @@ impl<'a> Client {
         request.set("Authorization", &format!("Bearer {}", access_token.token));
 
         if let Some(period_type) = params.period_type {
-            request.query("period_type", &period_type);
+            request.query("periodType", &period_type);
         }
 
         if let Some(period) = params.period {
@@ -269,7 +269,7 @@ impl<'a> Client {
         }
 
         if let Some(frequency_type) = params.frequency_type {
-            request.query("frequency_type", &frequency_type);
+            request.query("frequencyType", &frequency_type);
         }
 
         if let Some(frequency) = params.frequency {
@@ -277,15 +277,15 @@ impl<'a> Client {
         }
 
         if let Some(end_date) = params.end_date {
-            request.query("end_date", &end_date);
+            request.query("endDate", &end_date);
         }
 
         if let Some(start_date) = params.start_date {
-            request.query("start_date", &start_date);
+            request.query("startDate", &start_date);
         }
 
         if let Some(need_extended_hours_data) = params.need_extended_hours_data {
-            request.query("need_extended_hours_data", &need_extended_hours_data.to_string());
+            request.query("needExtendedHoursData", &need_extended_hours_data.to_string());
         }
 
         let response = request.call();
