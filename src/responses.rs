@@ -17,7 +17,7 @@ pub struct GetPriceHistoryResponse {
 }
 
 /// Individual candle item in [`GetPriceHistoryResponse`](struct.GetPriceHistoryResponse.html).
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize)]
 pub struct Candle {
     pub close: f64,
     pub datetime: usize,
