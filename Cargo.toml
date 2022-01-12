@@ -1,6 +1,6 @@
 [package]
 name = "tda-sdk"
-version = "0.1.3"
+version = "0.1.4"
 authors = ["Ron Rider Jr. <rideron89@gmail.com>"]
 description = "SDK for interacting with the TD Ameritrade API."
 license = "MIT"
