@@ -1,13 +1,13 @@
 [package]
 name = "tda-sdk"
-version = "0.1.1"
+version = "0.1.4"
 authors = ["Ron Rider Jr. <rideron89@gmail.com>"]
 description = "SDK for interacting with the TD Ameritrade API."
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/rideron89/tda-sdk-rs"
 homepage = "https://github.com/rideron89/tda-sdk-rs"
-documentation = "https://docs.rs/tda-sdk/0.1.0/"
+documentation = "https://docs.rs/tda-sdk/latest/tda_sdk/"
 categories = ["api-bindings"]
 edition = "2018"
 
