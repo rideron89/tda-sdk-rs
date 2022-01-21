@@ -9,7 +9,7 @@ pub struct AccessTokenResponse {
 }
 
 /// Response returned by the `get_price_history()` method.
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct GetPriceHistoryResponse {
     pub candles: Vec<Candle>,
     pub empty: bool,
@@ -17,7 +17,7 @@ pub struct GetPriceHistoryResponse {
 }
 
 /// Individual candle item in [`GetPriceHistoryResponse`](struct.GetPriceHistoryResponse.html).
-#[derive(Clone, Copy, Debug, Deserialize)]
+#[derive(Clone, Copy, Debug, Deserialize, Serialize)]
 pub struct Candle {
     pub close: f64,
     pub datetime: usize,
@@ -28,7 +28,7 @@ pub struct Candle {
 }
 
 /// Individual response item returned by the `get_movers()` method.
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Mover {
     pub change: f64,
@@ -41,14 +41,14 @@ pub struct Mover {
 
 /// Individual response item returned by the `get_account()` and
 /// `get_accounts()` methods.
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Account {
     pub securities_account: SecuritiesAccount,
 }
 
 /// Securities Account item in [`Account`](struct.Account.html)
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(untagged)]
 pub enum SecuritiesAccount {
     #[serde(rename_all = "camelCase")]
@@ -65,7 +65,7 @@ pub enum SecuritiesAccount {
 }
 
 /// Initial Balances item in [`SecuritiesAccount`](enum.SecuritiesAccount.html)
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct InitialBalances {
     pub account_value: f64,
@@ -88,7 +88,7 @@ pub struct InitialBalances {
 }
 
 /// Current Balances item in [`SecuritiesAccount`](enum.SecuritiesAccount.html)
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CurrentBalances {
     pub accrued_interest: f64,
@@ -113,7 +113,7 @@ pub struct CurrentBalances {
 }
 
 /// Projected Balances item in [`SecuritiesAccount`](enum.SecuritiesAccount.html)
-#[derive(Debug, Deserialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ProjectedBalances {
     pub cash_available_for_trading: f64,
